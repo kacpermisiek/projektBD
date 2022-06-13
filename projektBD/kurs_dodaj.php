@@ -1,13 +1,41 @@
+<?php
+include "open_db.php";
+$conn = OpenCon();
+$sql_statement = "SELECT id_kierowcy, imie, nazwisko from kierowca";
+$sql_statement2 = "SELECT id_ladunku, zawartosc_ladunku from ladunek WHERE id_ladunku NOT IN (select ladunek_id from kurs)";
+
+$result = $conn->query($sql_statement);
+$result2 = $conn->query($sql_statement2);
+
+CloseCon($conn);
+?>
+
 <h2>Dodawanie kursu</h2>
 <div style='margin=auto'>
-<form method='post' action='kurs_action.php'>
+<form id=add_kurs method='post' action='kurs_action.php'>
 	<input name='id_kursu' type=hidden></br>
 
-	<h3>Id kierowcy</h3>
-	<input name='kierowca_id' type="number" placeholder='kierowca_id'></br>
+	<h3>Kierowca</h3>
+	<select form=add_kurs name='kierowca_id' required>
 
-	<h3>Id ładunku</h3>
-	<input name='ladunek_id' type="number" placeholder='ladunek_id'></br>
+		<?php while($row = $result->fetch_array()):;?>
+
+			<option value="<?php echo $row[0];?>"><?php echo $row[1] . " " . $row[2];?></option>
+
+		<?php endwhile;?>
+
+	</select>
+
+	<h3>Ładunek</h3>
+	<select form=add_kurs name='ladunek_id' required>
+
+		<?php while($row = $result2->fetch_array()):;?>
+
+			<option value="<?php echo $row[0];?>"><?php echo $row[0] . " - " . $row[1];?></option>
+
+		<?php endwhile;?>
+
+	</select>
 
 
 	<h3>Data kursu</h3>
@@ -29,7 +57,7 @@
 	<input name='adres_docelowy' placeholder='Adres docelowy' required></br>
 	</br></br>
 
-	<input type=submit name=dodaj value="Submit">
+	<input type=submit name=dodaj value="Dodaj">
 	<input type=submit name=anuluj value='Anuluj'>
 	
 </form>

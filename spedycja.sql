@@ -264,3 +264,42 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+DELETE FROM kurs;
+DELETE FROM ladunek;
+DELETE FROM klient;
+
+
+INSERT INTO `klient` (`id_klienta`, `nazwa`, `miasto`, `adres`, `telefon`) VALUES
+(1, 'Astro2', 'Wrocław', 'Braniborska 4', '726564543'),
+(2, 'BCA', 'Wrocław', 'Pomorska 321/12', '716142332'),
+(3, 'XYZ', 'Wrocław', 'Pl. Borna 5/1', '392725894'),
+(4, 'ERE', 'Warszawa', 'Marszałkowska 1/2', '146496654'),
+(5, 'OCY', 'Łódź', 'Piotrkowska 111/1', '893439595'),
+(6, 'JAFO', 'Toruń', 'Wirtualna', '622187126'),
+(7, 'CESOFT', 'Wrocław', 'Rynek 0', '216257784'),
+(8, 'INNOV', 'Warszawa', 'Marszałkowska 1', '458361758'),
+(9, 'Jan Kowalczyk', 'Wrocław', 'Opolska 119c', '331454487'),
+(10, 'SP201', 'Wrocław', 'Borna 4', '111254235'),
+(17, 'asd', 'asd', 'asd', '213');
+
+INSERT INTO `ladunek` (`id_ladunku`, `klient_id`, `zawartosc_ladunku`, `waga`) VALUES
+(1, 1, 'Leki', 10),
+(2, 1, 'Leki', 12),
+(3, 2, 'Żwyność', 13),
+(4, 4, 'Broń', 16),
+(5, 9, 'Samochody', 20),
+(6, 10, 'Leki', 6),
+(7, 7, 'Pieniądze', NULL),
+(8, 6, 'Palety', 4);
+
+INSERT INTO `kurs` (`id_kursu`, `kierowca_id`, `ladunek_id`, `data_kursu`, `cena`, `miasto_poczatkowe`, `adres_poczatkowy`, `miasto_docelowe`, `adres_docelowy`) VALUES
+(2, 2, 2, '2022-02-01', 4881, 'Poznań', 'Długa 36', 'Leszno', 'Motornicza 35'),
+(3, 1, 3, '2022-05-09', 1977, 'Warszawa', 'Narodowa 85', 'Białystok', 'Szkolna 18'),
+(4, 5, 4, '2022-04-14', 9957, 'Wrocław', 'Cybulskiego 12/2', 'Toruń', 'Wirtualna 1'),
+(5, 4, 5, '2022-05-11', 9116, 'Wrocław', 'Rynek 0', 'Warszawa', 'Marszałkowska 1'),
+(6, 4, 6, '2022-05-09', 2176, 'Poznań', 'Bułgarska 131', 'Białystok', 'Szkolna 16'),
+(7, 4, 7, '2022-05-02', 5251, 'Wrocław', 'Tramwajowa 3', 'Wrocław', 'Autobusowa 1'),
+(9, 3, 8, '2022-05-05', 4535, 'Toruń', 'Piernikowa 3', 'Gdańsk', 'Stoczniowa 3'),
+(12, 1, 1, '2022-06-02', 2137, 'Rawicz', 'asd 3', 'Wałbrzych', 'def 4');

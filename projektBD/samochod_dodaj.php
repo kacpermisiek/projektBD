@@ -15,7 +15,7 @@
 </br></br>
 
 	<input type=submit name=dodaj value=Dodaj>
-	<input type=submit name=anuluj value=Dodaj>
+	<input type=submit name=anuluj value=Anuluj>
 	
 </form>
 </div>

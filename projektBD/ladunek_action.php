@@ -5,13 +5,14 @@ $conn = OpenCon();
 
 if(isset($_POST['dodaj']))
 {    
-     $id_ladunku = $_POST['id_ladunku'];
+
+     $id_ladunku = intval($_POST['id_ladunku']);
      $klient_id = $_POST['klient_id'];
      $zawartosc_ladunku = $_POST['zawartosc_ladunku'];
-     $waga = $_POST['waga'];
+     $waga = intval($_POST['waga']);
 
     $sql_statement = "INSERT INTO ladunek (klient_id, zawartosc_ladunku, waga) 
-    VALUES ('$klient_id', '$zawartosc_ladunku', '$zawartosc_ladunku')";
+    VALUES ('$klient_id', '$zawartosc_ladunku', '$waga')";
 
     $result = $conn->query($sql_statement);
 }
@@ -33,9 +34,11 @@ else if(isset($_POST['zapisz'])){
 
 else if(isset($_POST['usun'])){
     $id_ladunku = $_POST['id_ladunku'];
-    $sql_statement = "DELETE FROM ladunek where id_ladunku='$id_ladunku'";
+    $sql_statement1 = "DELETE FROM kurs WHERE ladunek_id='$id_ladunku'";
+    $sql_statement2 = "DELETE FROM ladunek where id_ladunku='$id_ladunku'";
 
-    $result = $conn->query($sql_statement);
+    $result = $conn->query($sql_statement1);
+    $result = $conn->query($sql_statement2);
 }
 
 else if(isset($_POST['anuluj'])){

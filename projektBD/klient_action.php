@@ -36,9 +36,15 @@ else if(isset($_POST['zapisz'])){
 
 else if(isset($_POST['usun'])){
     $id_klienta = $_POST['id_klienta'];
-    $sql_statement = "DELETE FROM klient where id_klienta='$id_klienta'";
+    $sql_statement1 = "DELETE FROM kurs where ladunek_id IN (SELECT id_ladunku FROM ladunek JOIN klient ON klient_id=id_klienta WHERE klient_id=$id_klienta)";
+    $sql_statement2 = "DELETE FROM ladunek where klient_id='$id_klienta'";
+    $sql_statement3 = "DELETE FROM klient where id_klienta='$id_klienta'";
 
-    $result = $conn->query($sql_statement);
+
+
+    $result = $conn->query($sql_statement1);
+    $result = $conn->query($sql_statement2);
+    $result = $conn->query($sql_statement3);
 }
 
 else if(isset($_POST['anuluj'])){

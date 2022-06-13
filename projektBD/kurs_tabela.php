@@ -4,7 +4,7 @@ include 'open_db.php';
 
 $conn = OpenCon();
 
-$result = $conn->query("SELECT * FROM kurs");
+$result = $conn->query("SELECT kurs.*, kierowca.imie, kierowca.nazwisko FROM kurs LEFT JOIN kierowca ON kurs.kierowca_id=kierowca.id_kierowcy");
 
 
 echo "<h1> Tabela kursow </h1>
@@ -12,7 +12,7 @@ echo "<h1> Tabela kursow </h1>
 <table style='border=4px solid black'>
     <tr>
     <th>id_kursu</th>
-    <th>kierowca_id</th>
+    <th>kierowca</th>
     <th>ladunek_id</th>
     <th>data_kursu</th>
     <th>cena</th>
@@ -27,7 +27,7 @@ while($row = $result->fetch_row())
     echo "
     <tr>
         <td onclick=\"location='?id=kurs_edytuj&id_kursu=$row[0]'\"'>$row[0]</td>
-        <td>$row[1]</td>
+        <td>$row[10] $row[9]</td>
         <td>$row[2]</td>
         <td>$row[3]</td>
         <td>$row[4]</td>

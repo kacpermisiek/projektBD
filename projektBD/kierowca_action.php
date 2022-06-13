@@ -7,14 +7,20 @@ if(isset($_POST['dodaj']))
 {    
      $id_kierowcy = $_POST['id_kierowcy'];
      $nr_identyfikacyjny = $_POST['nr_identyfikacyjny'];
-     $samochod_id = $_POST['samochod_id'];
      $imie = $_POST['imie'];
      $nazwisko = $_POST['nazwisko'];
      $telefon = $_POST['telefon'];
 
 
-    $sql_statement = "INSERT INTO kierowca (nr_identyfikacyjny, samochod_id, imie, nazwisko, telefon) 
-    VALUES ('$nr_identyfikacyjny', '$samochod_id', '$imie', '$nazwisko',  '$telefon')";
+     if ($_POST['samochod_id']==="None") {
+        $sql_statement = "INSERT INTO kierowca (nr_identyfikacyjny, samochod_id, imie, nazwisko, telefon) 
+        VALUES ('$nr_identyfikacyjny', NULL, '$imie', '$nazwisko',  '$telefon')";
+    }
+    else{
+        $samochod_id = $_POST['samochod_id'];
+        $sql_statement = "INSERT INTO kierowca (nr_identyfikacyjny, samochod_id, imie, nazwisko, telefon) 
+        VALUES ('$nr_identyfikacyjny', '$samochod_id', '$imie', '$nazwisko',  '$telefon')";
+    }
 
     $result = $conn->query($sql_statement);
 }
@@ -22,18 +28,30 @@ if(isset($_POST['dodaj']))
 else if(isset($_POST['zapisz'])){
     $id_kierowcy = $_POST['id_kierowcy'];
     $nr_identyfikacyjny = $_POST['nr_identyfikacyjny'];
-    $samochod_id = $_POST['samochod_id'];
     $imie = $_POST['imie'];
     $nazwisko = $_POST['nazwisko'];
     $telefon = $_POST['telefon'];
 
-    $sql_statement = "UPDATE kierowca 
+
+    if ($_POST['samochod_id']==="None") {
+        $sql_statement = "UPDATE kierowca 
+        set nr_identyfikacyjny='$nr_identyfikacyjny', 
+        samochod_id=NULL, 
+        imie='$imie', 
+        nazwisko='$nazwisko', 
+        telefon='$telefon'
+    where id_kierowcy='$id_kierowcy'";
+    }
+    else{
+        $samochod_id = $_POST['samochod_id'];
+        $sql_statement = "UPDATE kierowca 
         set nr_identyfikacyjny='$nr_identyfikacyjny', 
         samochod_id='$samochod_id', 
         imie='$imie', 
         nazwisko='$nazwisko', 
         telefon='$telefon'
     where id_kierowcy='$id_kierowcy'";
+    }
 
     $result = $conn->query($sql_statement);
 }
