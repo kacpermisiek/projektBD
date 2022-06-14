@@ -35,11 +35,16 @@ CloseCon($conn);
 
 	<input type=submit name=dodaj value=Dodaj>
 
-	<?php while($row = $result->fetch_array()):;?>
-
-			<?php echo $row[0]; ?>
-
-	<?php endwhile;?>
 	
 </form>
-</div>
+<button id="myBtn">Anuluj</button>
+</div> 
+
+<script>
+
+	var btn = document.getElementById('myBtn');
+	btn.addEventListener('click', function() {
+	document.location.href = 'http://localhost/projektBD/?id=ladunek_tabela';
+	});
+
+</script>

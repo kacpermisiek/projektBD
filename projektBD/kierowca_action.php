@@ -74,5 +74,5 @@ else{
 # echo "<button onclick=\"location='?id='\">Powrót do klientów</button>";
 
 CloseCon($conn);
-header("location:.");
+header("location:http://localhost/projektBD/?id=kierowca_tabela");
 ?>

@@ -59,16 +59,16 @@ echo "<h2>Edycja kierowcy " . $obj['imie'] . " " . $obj['nazwisko'] . "</h2>";
 </br>
 <input type=submit name=zapisz value='Zapisz'>
 <input type=submit name=usun value='Usun' onclick="return confirm('Czy na pewno chcesz usunąć kierowcę?')">
-<input type=submit name=anuluj value='Anuluj'>
 
 </form>
+<button id="myBtn">Anuluj</button>
 
+<script>
 
+	var btn = document.getElementById('myBtn');
+	btn.addEventListener('click', function() {
+	document.location.href = 'http://localhost/projektBD/?id=kierowca_tabela';
+	});
 
-
-
-
-<?php
-CloseCon($conn);
-?>
+</script>
 

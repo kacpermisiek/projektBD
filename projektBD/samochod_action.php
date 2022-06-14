@@ -22,12 +22,20 @@ else if(isset($_POST['zapisz'])){
     $rejestracja = $_POST['rejestracja'];
     $przebieg = $_POST['przebieg'];
 
-    $sql_statement = "UPDATE samochod 
+    if ($_POST['przebieg']==="") {
+        $sql_statement = "UPDATE samochod 
+        set nazwa='$nazwa', 
+        rejestracja='$rejestracja',  
+        przebieg=NULL
+    where id_samochodu='$id_samochodu'";
+    }
+    else{
+        $sql_statement = "UPDATE samochod 
         set nazwa='$nazwa', 
         rejestracja='$rejestracja',  
         przebieg='$przebieg'
     where id_samochodu='$id_samochodu'";
-
+    }
     $result = $conn->query($sql_statement);
 }
 
@@ -46,8 +54,7 @@ else{
     sleep(5);
 }
 
-# echo "<button onclick=\"location='?id='\">Powrót do klientów</button>";
 
 CloseCon($conn);
-header("location:.");
+header("location:http://localhost/projektBD/?id=samochod_tabela");
 ?>

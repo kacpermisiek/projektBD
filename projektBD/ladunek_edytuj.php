@@ -41,7 +41,7 @@ echo "<h2>Edycja ładunku " . $obj['zawartosc_ladunku'] . "</h2>";
 <input name='zawartosc_ladunku' value='<?=htmlentities($obj['zawartosc_ladunku'])?>'>
 
 <h3> Waga (tony)</h3>
-<input name='waga' type=Number value='<?=htmlentities($obj['waga'])?>' required>
+<input name='waga' type=Number value='<?=htmlentities($obj['waga'])?>'>
 
 </br>
 </br>
@@ -49,11 +49,19 @@ echo "<h2>Edycja ładunku " . $obj['zawartosc_ladunku'] . "</h2>";
 </br>
 <input type=submit name=zapisz value='Zapisz'>
 <input type=submit name=usun value='Usun' onclick="return confirm('Czy na pewno chcesz usunąć ładunek?')">
-<input type=submit name=anuluj value='Anuluj'>
 
 </form>
 
+<button id="myBtn">Anuluj</button>
 
+<script>
+
+	var btn = document.getElementById('myBtn');
+	btn.addEventListener('click', function() {
+	document.location.href = 'http://localhost/projektBD/?id=ladunek_tabela';
+	});
+
+</script>
 
 
 

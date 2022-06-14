@@ -23,11 +23,20 @@ else if(isset($_POST['zapisz'])){
     $zawartosc_ladunku = $_POST['zawartosc_ladunku'];
     $waga = $_POST['waga'];
 
-    $sql_statement = "UPDATE ladunek 
+    if ($_POST['waga']==="") {
+        $sql_statement = "UPDATE ladunek 
+            set klient_id='$klient_id', 
+            zawartosc_ladunku='$zawartosc_ladunku',  
+            waga=NULL
+        where id_ladunku='$id_ladunku'";
+    }
+    else{
+        $sql_statement = "UPDATE ladunek 
         set klient_id='$klient_id', 
         zawartosc_ladunku='$zawartosc_ladunku',  
         waga='$waga'
     where id_ladunku='$id_ladunku'";
+    }
 
     $result = $conn->query($sql_statement);
 }
@@ -49,8 +58,7 @@ else{
     sleep(5);
 }
 
-# echo "<button onclick=\"location='?id='\">Powrót do klientów</button>";
 
 CloseCon($conn);
-header("location:.");
+header("location:http://localhost/projektBD/?id=ladunek_tabela");
 ?>

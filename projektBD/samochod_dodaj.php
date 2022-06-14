@@ -15,7 +15,16 @@
 </br></br>
 
 	<input type=submit name=dodaj value=Dodaj>
-	<input type=submit name=anuluj value=Anuluj>
 	
 </form>
-</div>
+<button id="myBtn">Anuluj</button>
+</div> 
+
+<script>
+
+	var btn = document.getElementById('myBtn');
+	btn.addEventListener('click', function() {
+	document.location.href = 'http://localhost/projektBD/?id=samochod_tabela';
+	});
+
+</script>

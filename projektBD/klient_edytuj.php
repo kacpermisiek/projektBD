@@ -33,9 +33,20 @@ echo "<h2>Edycja klienta " . $obj['nazwa'] . "</h2>";
 </br>
 <input type=submit name=zapisz value='Zapisz'>
 <input type=submit name=usun value='Usun' onclick="return confirm('Czy na pewno chcesz usunąć klienta?')">
-<input type=submit name=anuluj value='Anuluj'>
 
 </form>
+
+<button id="myBtn">Anuluj</button>
+</div> 
+
+<script>
+
+	var btn = document.getElementById('myBtn');
+	btn.addEventListener('click', function() {
+	document.location.href = 'http://localhost/projektBD/?id=klient_tabela';
+	});
+
+</script>
 
 
 
